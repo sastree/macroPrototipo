@@ -91,6 +91,7 @@
             <input type="text" id="textoInput">
             <div onclick="resetTodo()" class="reset"><i class="ri-loop-left-line"></i></div>
         </div>
+       
         <div class="resultado">
 
         </div>
@@ -113,7 +114,7 @@
             cajaTexto.appendChild(elementoP);
 
         }
-        var fondoPalabras = document.querySelectorAll(".palabra");
+
         var palabra1 = document.querySelector("#palabra1");
         var infoResultado = document.querySelector(".resultado");
         palabra1.style.backgroundColor = "#DDDDDD";
@@ -130,13 +131,14 @@
 
 
             if (event.code === "Space") {
-                if( contadorEspacio == 1) {
+                if( contadorEspacio == 1 && !(input.value == "") && !(input.value == " ")) {
                     inicio();
                 }
                 if( input.value == " " ||  input.value == "" ) {
 
                     console.log("err_input_vacio");
                     input.value = "";
+                    
 
                 }
                 else {
@@ -155,11 +157,23 @@
                         if (valorInput.trim() === quitarFondoAnterior.innerHTML) {
                             quitarFondoAnterior.style.color = "green";
                             input.value = "";
+                            if( contadorEspacio == arraySeparado.length + 1 ) {
+                                contadorEspacio = 0;
+                                infoResultado.textContent = "Numero de errores: " + errores;
+                                document.getElementById("textoInput").disabled = true;
+                                parar();
+                            }
                         }
                         else {
                             quitarFondoAnterior.style.color = "red";
                             errores++;
                             input.value = "";
+                            if( contadorEspacio == arraySeparado.length + 1 ) {
+                                contadorEspacio = 0;
+                                infoResultado.textContent = "Numero de errores: " + errores;
+                                document.getElementById("textoInput").disabled = true;
+                                parar();
+                            }
                         }
         
                         quitarFondoAnterior.style.backgroundColor = "white";
@@ -167,12 +181,7 @@
         
                         }
 
-                        if( contadorEspacio == arraySeparado.length + 1) {
-                            contadorEspacio = 0;
-                            infoResultado.textContent = "Numero de errores: " + errores;
-                            document.getElementById("textoInput").disabled = true;
-                            parar();
-                        }
+                
                         
 
                    
@@ -180,7 +189,9 @@
             
             }
             );
-        function resetTodo() { 
+
+
+            function resetTodo() { 
                 /*for ( let i = 1; i < arraySeparado.length + 1; i++) {
                     var palabra = "#palabra" + i;
                     var palabraFondoReset = document.querySelector(palabra);
