@@ -58,6 +58,21 @@
             margin-bottom: 10px;
 
         }
+        .acciones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .reset {
+            cursor: pointer;
+            font-size: 50px;
+            background-color: white;
+            border-radius: 50%;
+            margin-left: 20px;
+            padding: 0px 5px 0px 5px;
+            
+        }
     </style>
 </head>
 <body>
@@ -71,7 +86,10 @@
         <div class="texto">
 
         </div>
-        <input type="text" id="textoInput">
+        <div class="acciones">
+            <input type="text" id="textoInput">
+            <div onclick="resetTodo()" class="reset"><i class="ri-loop-left-line"></i></div>
+        </div>
         <div class="resultado">
 
         </div>
@@ -161,6 +179,23 @@
             
             }
             );
+        function resetTodo() { 
+                /*for ( let i = 1; i < arraySeparado.length + 1; i++) {
+                    var palabra = "#palabra" + i;
+                    var palabraFondoReset = document.querySelector(palabra);
+                    palabraFondoReset.style.backgroundColor = "white";
+                    palabraFondoReset.style.color = "black";
+                }
+                contadorEspacio = 0;
+                errores = 0;
+                palabra1.style.backgroundColor = "#DDDDDD";
+                infoResultado.textContent = "";
+                document.getElementById("textoInput").disabled = false;
+                input.focus();
+                input.value = "";
+                reinicio(); */
+                location.reload();
+            }
             //cronometro
             
                     var centesimas = 0;
